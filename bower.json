@@ -1,0 +1,24 @@
+{
+  "name": "gaming-boardz",
+  "version": "0.0.0",
+  "authors": [
+    "Bryan Garza <bgarza1016@gmail.com>"
+  ],
+  "description": "Gaming boardz for gamers stats.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "toaster": "~0.4.15",
+    "angular": "~1.4.5",
+    "angular-resource": "~1.4.5",
+    "angular-route": "~1.4.5"
+  }
+}
