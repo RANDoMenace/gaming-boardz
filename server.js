@@ -27,20 +27,35 @@ app.use(stylus.middleware(
 
 app.use(express.static(__dirname+ '/public'));
 
+//setup for db
+
 mongoose.connect('mongodb://localhost:27017/gaming-boardz');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback() {
   console.log('gaming-boardz db opened');
-})
+});
 
+//models for db setup
+
+var messageSchema = mongoose.Schema({message: String});
+var Message = mongoose.model('Message', messageSchema);
+var mongoMessage;
+Message.findOne().exec(function(err, messageDoc) {
+  mongoMessage = messageDoc.message;
+});
+
+//calling partials from path
 app.get('/partials/:partialPath', function(req, res) {
   res.render('partials/' + req.params.partialPath);
 });
 
+// instead of faulting back to root goto any index page
 app.get('*', function(req, res) {
-  res.render('index');
-}); //matches all routes, delivers index page
+  res.render('index', {
+    mongoMessage: mongoMessage
+  });
+});
 
 var port = 3000;
 app.listen(port);
