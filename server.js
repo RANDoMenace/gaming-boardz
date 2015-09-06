@@ -28,8 +28,11 @@ app.use(stylus.middleware(
 app.use(express.static(__dirname+ '/public'));
 
 //setup for db
-
-mongoose.connect('mongodb://localhost:27017/gaming-boardz');
+if(env === 'development') {
+  mongoose.connect('mongodb://localhost/gaming-boardz');
+} else {
+  mongoose.connect('mongodb://bgarza:bgarza@ds041613.mongolab.com:41613/gaming-boardz');
+}//this is for moving between prod and dev when deployed to heroku
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback() {
