@@ -1,2 +1,10 @@
-h1 This is a Partial
-h2 {{ myVar }}
+.container
+  .jumbotron
+    h1 Gaming Boardz
+    p Welcome to Gaming Boardz a site where gamers can compare their console stats with their friends accross multiple platforms.
+
+  .row
+    .col-md-6
+      div(ng-include="'/partials/featured-player'")
+    .col-md-6
+      div(ng-include="'/partials/new-player'")

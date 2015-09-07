@@ -41,12 +41,12 @@ db.once('open', function callback() {
 
 //models for db setup
 
-var messageSchema = mongoose.Schema({message: String});
-var Message = mongoose.model('Message', messageSchema);
-var mongoMessage;
-Message.findOne().exec(function(err, messageDoc) {
-  mongoMessage = messageDoc.message;
-});
+// var messageSchema = mongoose.Schema({message: String});
+// var Message = mongoose.model('Message', messageSchema);
+// var mongoMessage;
+// Message.findOne().exec(function(err, messageDoc) {
+//   mongoMessage = messageDoc.message;
+// });
 
 //calling partials from path
 app.get('/partials/:partialPath', function(req, res) {
@@ -55,9 +55,7 @@ app.get('/partials/:partialPath', function(req, res) {
 
 // instead of faulting back to root goto any index page
 app.get('*', function(req, res) {
-  res.render('index', {
-    mongoMessage: mongoMessage
-  });
+  res.render('index');
 });
 
 var port = process.env.PORT || 3000;
