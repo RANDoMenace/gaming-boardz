@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
 module.exports = function(config) {
   mongoose.connect(config.db);
@@ -7,4 +7,20 @@ module.exports = function(config) {
   db.once('open', function callback() {
     console.log('gaming-boardz db opened');
   });
+
+  var userSchema = mongoose.Schema({
+    firstName: String,
+    lastName: String,
+    username: String
+  });
+  var User = mongoose.model('User', userSchema);
+
+  User.find({}).exec(function(err, collection) {
+    if(collection.length === 0) {
+      User.create({firstName: 'Joe',lastName: 'Blow',username: "joeB"});
+      User.create({firstName: 'John',lastName: 'Aton',username: "jTon"});
+      User.create({firstName: 'Jack',lastName: 'Bauer',username: "keif"});
+    }
+  })
 }
+
