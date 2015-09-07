@@ -1,3 +1,5 @@
 .panel.panel-primary
   .panel-heading.text-center Featured Player
-  .panel-body Body Goes Here
+  .panel-body
+    .row(ng-repeat="player in players | filter:{featured:true}")
+      .col-md-12 {{player.gamertag}}
