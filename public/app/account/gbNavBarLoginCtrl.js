@@ -1,4 +1,4 @@
-angular.module('app').controller('myNavBarLoginCtrl', function($scope, $http) {
+angular.module('app').controller('gbNavBarLoginCtrl', function($scope, $http) {
   $scope.signin = function(username, password) {
     $http.post('/login', {username:username, password:password}).then(function(response) {
       if(response.data.success) {
