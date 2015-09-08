@@ -21,6 +21,13 @@ angular.module('app').factory('gbAuth', function($http, gbIdentity, $q, gbUser) 
         dfd.resolve();
       });
       return dfd.promise;
+    },
+    authorizeCurrentUserForRoute: function(role) {
+      if(gbIdentity.isAuthorized(role)) {
+            return true;
+          } else {
+            return $q.reject('not authorized');
+          }
     }
   }
 })
