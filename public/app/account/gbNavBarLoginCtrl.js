@@ -1,11 +1,21 @@
-angular.module('app').controller('gbNavBarLoginCtrl', function($scope, $http) {
+angular.module('app').controller('gbNavBarLoginCtrl', function($scope, $http, gbIdentity, gbNotifier, gbAuth, $location) {
+  $scope.identity = gbIdentity;
   $scope.signin = function(username, password) {
-    $http.post('/login', {username:username, password:password}).then(function(response) {
-      if(response.data.success) {
-        console.log('logged in!');
+    gbAuth.authenticateUser(username, password).then(function(success) {
+      if(success) {
+        gbNotifier.notify('You have successfully signed in!');
       } else {
-        console.log('failed to log in!');
+        gbNotifier.notify('Username/Password combination incorrect!');
       }
+    });
+  }
+
+  $scope.signout = function() {
+    gbAuth.logoutUser().then(function() {
+      $scope.username = "";
+      $scope.password = "";
+      gbNotifier.notify('You have successfully signed out!');
+      $location.path('/');
     })
   }
-})
+});
