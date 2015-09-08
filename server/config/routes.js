@@ -15,6 +15,8 @@ module.exports = function(app) {
 
   // instead of faulting back to root goto any index page
   app.get('*', function(req, res) {
-    res.render('index');
+    res.render('index', {
+      bootstrappedUser: req.user
+    });
   });
 }
