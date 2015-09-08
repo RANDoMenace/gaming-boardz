@@ -5,6 +5,10 @@ angular.module('app').factory('gbNotifier', function(gbToastr) {
     notify: function(msg) {
       gbToastr.success(msg);
       console.log(msg);
+    },
+    error: function(msg) {
+      gbToastr.error(msg);
+      console.log(msg);
     }
   }
 });
