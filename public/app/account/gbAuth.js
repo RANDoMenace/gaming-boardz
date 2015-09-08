@@ -1,10 +1,12 @@
-angular.module('app').factory('gbAuth', function($http, gbIdentity, $q) {
+angular.module('app').factory('gbAuth', function($http, gbIdentity, $q, gbUser) {
   return {
     authenticateUser: function(username, password) {
       var dfd = $q.defer();
       $http.post('/login', {username:username, password:password}).then(function(response) {
         if(response.data.success) {
-          gbIdentity.currentUser = response.data.user;
+          var user = new gbUser();
+          angular.extend(user, response.data.user);
+          gbIdentity.currentUser = user;
           dfd.resolve(true);
         } else {
           dfd.resolve(false);
