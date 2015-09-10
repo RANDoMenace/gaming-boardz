@@ -4,6 +4,9 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
   var routeRoleChecks =  {
     admin: {auth: function(gbAuth) {
       return gbAuth.authorizeCurrentUserForRoute('admin')
+    }},
+    user: {auth: function(gbAuth) {
+      return gbAuth.authorizeAuthenticatedUserForRoute()
     }}
   }
 
@@ -15,6 +18,10 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     })
     .when('/signup', { templateUrl: '/partials/account/signup',
       controller: 'gbSignupCtrl'
+    })
+
+    .when('/profile', { templateUrl: '/partials/account/profile',
+      controller: 'gbProfileCtrl', resolve: routeRoleChecks.user
     })
 });
 

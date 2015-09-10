@@ -29,6 +29,20 @@ angular.module('app').factory('gbAuth', function($http, gbIdentity, $q, gbUser) 
       return dfd.promise;
     },
 
+    updateCurrentUser: function(newUserData) {
+      var dfd = $q.defer();
+
+      var clone = angular.copy(gbIdentity.currentUser);
+      angular.extend(clone, newUserData);
+      clone.$update().then(function() {
+        gbIdentity.currentUser = clone;
+        dfd.resolve();
+      }, function(response) {
+        dfd.reject(response.data.reason);
+      });
+      return dfd.promise;
+    },
+
     logoutUser: function() {
       var dfd = $q.defer();
       $http.post('/logout', {logout:true}).then(function() {
@@ -37,12 +51,21 @@ angular.module('app').factory('gbAuth', function($http, gbIdentity, $q, gbUser) 
       });
       return dfd.promise;
     },
+
     authorizeCurrentUserForRoute: function(role) {
       if(gbIdentity.isAuthorized(role)) {
-            return true;
-          } else {
-            return $q.reject('not authorized');
-          }
+          return true;
+        } else {
+          return $q.reject('not authorized');
+        }
+    },
+
+    authorizeAuthenticatedUserForRoute: function() {
+      if(gbIdentity.isAuthenticated()) {
+        return true;
+      } else {
+        return $q.reject('not authorized');
+      }
     }
   }
-})
+});
