@@ -26,6 +26,9 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/games', { templateUrl: '/partials/games/game-list',
       controller: 'gbGameListCtrl'
     })
+    .when('/games/:id', { templateUrl: '/partials/games/game-details',
+      controller: 'gbGameDetailsCtrl'
+    })
 });
 
 angular.module('app').run(function($rootScope, $location) {

@@ -5,3 +5,9 @@ exports.getGames = function(req, res) {
     res.send(collection);
   })
 };
+
+exports.getGameById = function(req, res) {
+  Game.findOne({_id:req.params.id}).exec(function(err, game) {
+    res.send(game);
+  })
+}

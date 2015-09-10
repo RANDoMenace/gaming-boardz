@@ -1,5 +1,7 @@
 .panel.panel-primary
   .panel-heading.text-center New Games
   .panel-body
-    .row(ng-repeat="game in games | filter:{featured:false}")
-      .col-md-12 {{game.played + " - " + game.title + " - " + game.winner}}
+    .row(ng-repeat="game in games | orderBy: 'played':true | limitTo:6")
+      .col-md-3 {{game.played | date:'MMM d'}}
+      .col-md-9
+        a(href="/games/{{game._id}}") {{game.title}}

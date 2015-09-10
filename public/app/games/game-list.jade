@@ -12,5 +12,6 @@
         th Played
       tbody
         tr(ng-repeat="game in games | filter:searchText | orderBy:sortOrder")
-          td {{game.title}}
+          td
+            a(href="/games/{{game._id}}") {{game.title}}
           td {{game.played | date}}
