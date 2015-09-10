@@ -39,3 +39,13 @@ Is there a Steam API? Heck yeah there is!(And hopefully it works)
 ---
 
 [Trello Board](https://trello.com/b/4O9Ylg4f/gaming-boardz)
+
+notes for api //
+$.ajax({
+         url: "https://xboxapi.com/v2/xuid/RANDoMenace",
+         data: { signature: 'X-AUTH' },
+         type: "GET",
+         beforeSend: function(xhr){xhr.setRequestHeader('X-AUTH', '46a8aa7dcf9872e5e8f273546d9eb17060ac8a26');},
+         success: function(data) {console.log(data); }
+      });
+
