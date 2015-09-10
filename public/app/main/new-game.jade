@@ -1,0 +1,5 @@
+.panel.panel-primary
+  .panel-heading.text-center New Games
+  .panel-body
+    .row(ng-repeat="game in games | filter:{featured:false}")
+      .col-md-12 {{game.played + " - " + game.title + " - " + game.winner}}

@@ -23,6 +23,9 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/profile', { templateUrl: '/partials/account/profile',
       controller: 'gbProfileCtrl', resolve: routeRoleChecks.user
     })
+    .when('/games', { templateUrl: '/partials/games/game-list',
+      controller: 'gbGameListCtrl'
+    })
 });
 
 angular.module('app').run(function($rootScope, $location) {

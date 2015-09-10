@@ -1,0 +1,5 @@
+.panel.panel-primary
+  .panel-heading.text-center Featured Games
+  .panel-body
+    .row(ng-repeat="game in games | filter:{featured:true}")
+      .col-md-12 {{game.title + " - " + game.winner}}
