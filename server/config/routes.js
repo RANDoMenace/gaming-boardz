@@ -12,6 +12,7 @@ module.exports = function(app) {
 
   app.get('/api/games', games.getGames);
   app.get('/api/games/:id', games.getGameById);
+  app.post('/api/games', games.createGame);
 
   app.get('/partials/*', function(req, res) {
     res.render('../../public/app/' + req.params[0]);
