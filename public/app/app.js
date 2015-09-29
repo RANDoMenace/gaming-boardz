@@ -10,7 +10,7 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     }}
   }
 
-  $locationProvider.html5Mode({enabled: true, requireBase: false});
+  $locationProvider.html5Mode({enabled: false, requireBase: false});
   $routeProvider
     .when('/', { templateUrl: '/partials/main/main', controller: 'gbMainCtrl'})
     .when('/admin/users', { templateUrl: '/partials/admin/user-list',
@@ -23,12 +23,16 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/profile', { templateUrl: '/partials/account/profile',
       controller: 'gbProfileCtrl', resolve: routeRoleChecks.user
     })
+    .when('/games/new', { templateUrl: '/partials/games/game-create',
+      controller: 'gbNewGameCtrl'
+    })
     .when('/games', { templateUrl: '/partials/games/game-list',
       controller: 'gbGameListCtrl'
     })
     .when('/games/:id', { templateUrl: '/partials/games/game-details',
       controller: 'gbGameDetailsCtrl'
     })
+
 });
 
 angular.module('app').run(function($rootScope, $location) {
